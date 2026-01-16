@@ -1,10 +1,12 @@
 import React from 'react'
+import img from '../assets/img/bg-img.jpeg';
+const backgroundImg = img;
 
 export default function Connexion() {
   return (
     <>
-    <div className="container  d-flex flex-column justify-content-center px-5 align-items-center  vh-100">
-<form action="" className='form-group shadow p-5 wh-50 px-5'>
+    <div className="containe-fluid  d-flex flex-column justify-content-center px-5 align-items-center  vh-100 " style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+<form action="" className='form-group bg-white shadow p-5 wh-50 px-5'>
     
 <div className="mb-3">
   <label htmlFor="exampleFormControlInput2" className="form-label">Email</label>

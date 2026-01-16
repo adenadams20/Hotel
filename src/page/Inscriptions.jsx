@@ -1,10 +1,11 @@
 import React from 'react'
-
+import img from '../assets/img/bg-img.jpeg';
+const backgroundImg = img;
 export default function Inscriptions() {
   return (
     <>
-    <div className="container  d-flex flex-column justify-content-center align-items-center wh  vh-100">
-<form action="" className='form-group shadow p-5 px-5'>
+    <div className="container-fluid  d-flex flex-column justify-content-center align-items-center wh  vh-100 " style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+<form action="" className='form-group bg-white shadow p-5 px-5'>
     <div className="mb-3">
         <p>Incrivez-vous en tant que Admin</p>
   <label htmlFor="exampleFormControlInput1" className="form-label">Nom</label>
