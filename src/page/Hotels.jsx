@@ -1,34 +1,39 @@
-import React from "react";
-import hotel1 from "../assets/img/hotel1.jpg";
-import hotel2 from "../assets/img/hotel2.jpg";
-import hotel3 from "../assets/img/hotel3.jpg";
-import hotel4 from "../assets/img/hotel4.jpg";
-
-const hotels = [
-  { id: 1, name: "Hotel 1", image: hotel1 },
-  { id: 2, name: "Hotel 2", image: hotel2 },
-  { id: 3, name: "Hotel 3", image: hotel3 },
-  { id: 4, name: "Hotel 4", image: hotel4 },
-  { id: 5, name: "Hotel 5", image: hotel1 },
-  { id: 6, name: "Hotel 6", image: hotel2 },
-  { id: 7, name: "Hotel 7", image: hotel3 },
-  { id: 8, name: "Hotel 8", image: hotel4 },
-];
+import React, { useState, useEffect } from "react";
+import api from "../service/api"; // axios configuré
 
 export default function Hotels() {
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api
+      .get("/hotels")
+      .then((res) => {
+        setHotels(res.data);
+      })
+      .catch((err) => {
+        console.error("Erreur récupération hôtels", err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <p className="text-center mt-5">Chargement des hôtels...</p>;
+  }
+
   return (
     <>
       {/* Header */}
-      <div className="container-fluid w-100 p-0 shadow border bg-white">
-        <div className="row p-0 align-items-center">
-          <div className="col-md-6 d-flex align-items-center">
-            <h3 className="p-2 mb-0">Hotels</h3>
-            <span>{hotels.length}</span>
+      <div className="container-fluid w-100 p-3 shadow-sm border bg-white">
+        <div className="row align-items-center">
+          <div className="col-md-6">
+            <h3 className="mb-0">Hôtels</h3>
+            <small className="text-muted">{hotels.length} résultats</small>
           </div>
 
-          <div className="col-md-6 d-flex justify-content-md-end">
-            <button className="btn btn-transparent border">
-              Créer un nouveau hôtel
+          <div className="col-md-6 text-md-end">
+            <button className="btn btn-dark">
+              + Créer un nouvel hôtel
             </button>
           </div>
         </div>
@@ -42,12 +47,18 @@ export default function Hotels() {
               <div className="card h-100 shadow">
                 <img
                   src={hotel.image}
-                  className="card-img-top hotel-img"
+                  className="card-img-top"
                   alt={hotel.name}
+                  style={{ objectFit: "cover", height: "180px" }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{hotel.name}</h5>
-                  <p className="card-text">Description de l’hôtel.</p>
+                  <p className="card-text text-muted">
+                    {hotel.description || "Description de l’hôtel"}
+                  </p>
+                  <button className="btn btn-sm btn-outline-primary">
+                    Voir détails
+                  </button>
                 </div>
               </div>
             </div>
