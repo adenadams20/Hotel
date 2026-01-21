@@ -1,5 +1,12 @@
 import { Outlet } from "react-router-dom";
 
-export default function PublicLayout() {
-  return <Outlet />;
+function PublicLayout() {
+  return (
+    <div>
+      {/* ici tu peux mettre un header public si tu veux */}
+      <Outlet />
+    </div>
+  );
 }
+
+export default PublicLayout;
