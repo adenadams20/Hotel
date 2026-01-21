@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [react()],
-    base: '/Hotel/',
+    base: '/',
 
     server: {
-        port: 5173,
+        port: 8000,
         strictPort: true,
 
         proxy: {

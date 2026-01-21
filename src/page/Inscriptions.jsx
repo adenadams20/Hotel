@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import img from '../assets/img/bg-img.jpeg';
 import { registerUser } from '../service/api';
+const backgroundImg = img;
 
 export default function Inscriptions() {
   const navigate = useNavigate();
@@ -36,7 +37,13 @@ export default function Inscriptions() {
         password_confirmation: motdepasseConfirm
       };
 
-      const res = await registerUser(data);
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
       // Stocker le token immédiatement si backend renvoie un token
       if (res.token) {

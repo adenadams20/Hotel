@@ -30,7 +30,7 @@ export default function Connexion() {
       localStorage.setItem("token", token);
 
       // Redirection après connexion réussie
-      navigate("/profile");
+      navigate("/dashboard");
 
     } catch (err) {
       console.error(err);
